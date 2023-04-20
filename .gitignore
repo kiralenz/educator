@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# files and directories
+*.parquet
+*.csv
+config.json

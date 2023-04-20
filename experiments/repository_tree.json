@@ -1,0 +1,156 @@
+{
+    "sha": "5911ebe7db8aac17493a1b2f96fd63afec13a2f1",
+    "url": "https://api.github.com/repos/kiralenz/keeprising/git/trees/5911ebe7db8aac17493a1b2f96fd63afec13a2f1",
+    "tree": [
+        {
+            "path": ".gitignore",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "6963e753e0ed98b33ed857354d6fd1a26277e783",
+            "size": 2078,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/6963e753e0ed98b33ed857354d6fd1a26277e783"
+        },
+        {
+            "path": "Hello.py",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "d954ddde4c8945756d86386da21548007f3f4b36",
+            "size": 789,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/d954ddde4c8945756d86386da21548007f3f4b36"
+        },
+        {
+            "path": "README.md",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "1c7d31ea8709740311fd8f68aa3f7a36adb84211",
+            "size": 1249,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/1c7d31ea8709740311fd8f68aa3f7a36adb84211"
+        },
+        {
+            "path": "bread_loaf.png",
+            "mode": "100755",
+            "type": "blob",
+            "sha": "4c135d45822fb05e7510397ac6fffb231bd5c019",
+            "size": 587848,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/4c135d45822fb05e7510397ac6fffb231bd5c019"
+        },
+        {
+            "path": "environment-keeprising.yml",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "f7fe73a5eaf33bf5f57ed92ac60a30a47297d2ec",
+            "size": 6095,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/f7fe73a5eaf33bf5f57ed92ac60a30a47297d2ec"
+        },
+        {
+            "path": "notebooks",
+            "mode": "040000",
+            "type": "tree",
+            "sha": "d18c69131f370e6bb44cca4f6cbef76310831c9e",
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/trees/d18c69131f370e6bb44cca4f6cbef76310831c9e"
+        },
+        {
+            "path": "notebooks/dummy_data_creation.ipynb",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "1d24321d48d8478b374f51d5068b86b67022d3c7",
+            "size": 18242,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/1d24321d48d8478b374f51d5068b86b67022d3c7"
+        },
+        {
+            "path": "notebooks/experimental",
+            "mode": "040000",
+            "type": "tree",
+            "sha": "a90a008b98253dcdf00d9d291047aa7b7c022c36",
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/trees/a90a008b98253dcdf00d9d291047aa7b7c022c36"
+        },
+        {
+            "path": "notebooks/experimental/chart_creation.ipynb",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "8cfbe6d97fd5c94ce0236b1368b18eecee8ac256",
+            "size": 322195,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/8cfbe6d97fd5c94ce0236b1368b18eecee8ac256"
+        },
+        {
+            "path": "notebooks/experimental/chart_creation.py",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "b3b550e23dc43b3e164fcdaa675af08303c3b043",
+            "size": 6843,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/b3b550e23dc43b3e164fcdaa675af08303c3b043"
+        },
+        {
+            "path": "notebooks/experimental/chatbot.ipynb",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "fb1b9ffb8a2bcfffc78cb7ccb863ba5efa7d8ff2",
+            "size": 73467,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/fb1b9ffb8a2bcfffc78cb7ccb863ba5efa7d8ff2"
+        },
+        {
+            "path": "notebooks/experimental/tool_experiments.ipynb",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "7f8940ac05226d2551ffe8ec1e1a61a4618cb257",
+            "size": 85887,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/7f8940ac05226d2551ffe8ec1e1a61a4618cb257"
+        },
+        {
+            "path": "notebooks/experimental/utils1.py",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "c60f0c6a8a81a30c250efb2790d516e99e33e6a0",
+            "size": 476,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/c60f0c6a8a81a30c250efb2790d516e99e33e6a0"
+        },
+        {
+            "path": "pages",
+            "mode": "040000",
+            "type": "tree",
+            "sha": "6d51d3b3bbda29e2ce9aedf120a8e595fc327eb6",
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/trees/6d51d3b3bbda29e2ce9aedf120a8e595fc327eb6"
+        },
+        {
+            "path": "pages/1_Feeding.py",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "367606c2644ad38bd060ef01bce52922c308abdf",
+            "size": 4006,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/367606c2644ad38bd060ef01bce52922c308abdf"
+        },
+        {
+            "path": "pages/2_Baking.py",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "123f4b17d7eedc49ef7d2942cc7b2d22e2b87ad3",
+            "size": 4455,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/123f4b17d7eedc49ef7d2942cc7b2d22e2b87ad3"
+        },
+        {
+            "path": "pages/Dashboard.py",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "961ab654eabf4e04610cf0e22f605a197a0510e2",
+            "size": 3068,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/961ab654eabf4e04610cf0e22f605a197a0510e2"
+        },
+        {
+            "path": "pages/Troubles.py",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "55045fc6f4b4d306ece5bf6b2e1c0628bcf6f2da",
+            "size": 2331,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/55045fc6f4b4d306ece5bf6b2e1c0628bcf6f2da"
+        },
+        {
+            "path": "utils.py",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "1c098192e1e9986ec109e58544a7b044e6035cc3",
+            "size": 2190,
+            "url": "https://api.github.com/repos/kiralenz/keeprising/git/blobs/1c098192e1e9986ec109e58544a7b044e6035cc3"
+        }
+    ],
+    "truncated": false
+}
