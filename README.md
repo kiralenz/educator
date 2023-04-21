@@ -1,4 +1,14 @@
 # educator
 Individual support for programming improvement
 
-https://excalidraw.com/#json=ZApyo4nWoEKjDhKRfE7-s,va-oitUE2ibH3LqWROTmow
+## Concept
+Langchain
+https://excalidraw.com/#json=uLerjFAlQSuxu8jJk6HrJ,MXs0m_AL0vdi1cnQRPkzPg
+Requests
+https://excalidraw.com/#json=d3-zpepgpjRU185r8tLvR,7TGAcN0FXfvzncIXMKdLeg
+
+## TODO
+* turn the experiments nb into a langchain script
+* write code and feedback to txt files and save them with a date in the filename for access 
+* move from text files to a document db
+* set up a UI (streamlit)
