@@ -132,3 +132,5 @@ dmypy.json
 *.parquet
 *.csv
 config.json
+*.swp
+*.json
