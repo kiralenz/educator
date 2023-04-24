@@ -11,8 +11,9 @@ https://excalidraw.com/#json=d3-zpepgpjRU185r8tLvR,7TGAcN0FXfvzncIXMKdLeg
 * turn the experiments nb into a langchain script:
     * turn stuff into functions
     * align the functions and output into a proper chain
-* write code and feedback to txt files and save them with a date in the filename for access 
 * move from text files to a document db
 * set up a UI (streamlit)
 * dependencies
     * blackcellmagic
+* add warnings if returned string is empty
+* create a function to read code from github 
