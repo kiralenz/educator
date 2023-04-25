@@ -12,7 +12,9 @@ https://excalidraw.com/#json=d3-zpepgpjRU185r8tLvR,7TGAcN0FXfvzncIXMKdLeg
     * turn stuff into functions
     * align the functions and output into a proper chain
 * set up a UI (streamlit)
-* dependencies
-    * blackcellmagic
+* organize the setup
+    * dependencies
+        * blackcellmagic, streamlit, 
+    * requirements: https://pip.pypa.io/en/stable/user_guide/
 * create/research a function to read code from github 
 * move from text files to a document db
