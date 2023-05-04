@@ -189,13 +189,20 @@ def get_feedback(code_input, directory):
     
     return feedback, evaluation
 
+def add_vertical_space(num_lines: int = 1):
+    """Add vertical space to your Streamlit app."""
+    for _ in range(num_lines):
+        st.write("")
+
 
 
 # streamlit page
 
 st.title('Educator')
 
-
+if st.button('Choose your educator'):
+    teaching_style = st.radio('Your educator', ['Severus Snape','Bob Ross', 'Aristoteles'])
+    st.write(teaching_style)
 
 # Code review
 
@@ -207,29 +214,30 @@ code_input = st.text_input("Your code")
 # saving the input to txt via the prepared function
 save_to_txt(name='codeinput', input_string=code_input)
 
-# execute only when a code is passed --> repair that
-if code_input is not None:
+# # execute only when a code is passed 
+# if code_input != '':
     
-    feedback, evaluation = get_feedback(code_input=code_input, directory='../data')
+#     feedback, evaluation = get_feedback(code_input=code_input, directory='../data')
     
-    st.header('Your feedback:')
-    st.write(feedback)
-    st.header('Your evaluation:')
-    st.write(evaluation)
+#     st.header('Your feedback:')
+#     st.write(feedback)
+#     st.header('Your evaluation:')
+#     st.write(evaluation)
 
     
-
-# Set learning goals
-# This has to be done once and then only if the user checks the button 
-
-if st.button('Define learning goals'):
-    # get latest short feedbacks
-    latest_short_feedbacks = pick_shortfeedbacks(directory='../data', n=3)
-    # define goal from latest short feedbacks
-    learning_goals = define_goal(latest_short_feedbacks=latest_short_feedbacks)
+# add_vertical_space(2)
     
-    # stop the program if the created output is empty
-    assert len(learning_goals) != 0, 'The created learning goal was empty'
+# # Set learning goals
+# # This has to be done once and then only if the user checks the button 
+
+# if st.button('Define learning goals'):
+#     # get latest short feedbacks
+#     latest_short_feedbacks = pick_shortfeedbacks(directory='../data', n=3)
+#     # define goal from latest short feedbacks
+#     learning_goals = define_goal(latest_short_feedbacks=latest_short_feedbacks)
     
-    st.write('Your new goals are:' + learning_goals)
+#     # stop the program if the created output is empty
+#     assert len(learning_goals) != 0, 'The created learning goal was empty'
+    
+#     st.write('Your new goals are:' + learning_goals)
 
