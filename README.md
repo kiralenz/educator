@@ -17,3 +17,6 @@ https://excalidraw.com/#json=d3-zpepgpjRU185r8tLvR,7TGAcN0FXfvzncIXMKdLeg
 * move from text files to a document db
 * fix the answer style for evaluation (maybe give it an example)
 * create a config option for the teacher
+    * define a default option
+    * add teacher to prompt template
+    * let a tiny drawing of that teacher appear in the top right corner

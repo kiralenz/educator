@@ -43,14 +43,13 @@ def create_feedback(code_input):
     # defining the prompt template for a standardized input
     # TO EXPLORE: refine prompt
     feedback_prompt = PromptTemplate(
-        input_variables=["code"],
-        template="Please review the following code and give five recommendations with detailed explanations how to improve the programming: {code}?",
+        input_variables=["teaching_style, ""code"],
+        template="You are {teaching_style}. Please review the following code and give five recommendations with detailed explanations how to improve the programming: {code}?",
     )
     
     # initializing the LM
-    # TO EXPLORE: adjust temperature
     # TO EXPLORE: test other LMs
-    feedback_llm = OpenAI(temperature=0.3)
+    feedback_llm = OpenAI(temperature=0.5)
     
     # a simple chain taking user input, formatting the prompt and sending it to the LM
     feedback_chain = LLMChain(llm=feedback_llm, prompt=feedback_prompt)
@@ -118,7 +117,7 @@ def define_goal(latest_short_feedbacks):
     # defining the prompt template for a standardized input
     learning_goal_prompt = PromptTemplate(
         input_variables=["short_feedback"],
-        template="Summarize the following points: {short_feedback}",
+        template="Please summarize the following points: {short_feedback}",
     )
     
     # initializing the LM
@@ -136,8 +135,41 @@ def define_goal(latest_short_feedbacks):
     
     return learning_goals
 
-# TODO: what happens if there is no learning goal?
-# it is supposed to not produce an error but only return something empty
+# # TODO: what happens if there is no learning goal?
+# # TODO: split into reading and evaluting
+# # it is supposed to not produce an error but only return something empty
+# def evaluate_code(directory, code_input):
+#     # Get a list of all files in the directory
+#     files = os.listdir(directory)
+
+#     # Filter the list to only include files with the correct format
+#     files = [f for f in files if f.endswith("_learninggoals.txt") and len(f) == 32]
+
+#     # Sort the list of files by date, with the most recent file first
+#     files.sort(reverse=True)
+
+#     # Get the most recent file
+#     latest_file = files[:1]
+
+#     with open(os.path.join(directory, latest_file[0]), "r") as f:
+#         learning_goals = f.read()
+    
+#     # defining the promp template to get both the latest code input and learning_goals
+#     evaluation_prompt = PromptTemplate(
+#         input_variables=["teaching_style", "code_input", "learning_goals"],
+#         template="You are {teaching_style}. Please compare this code: {code_input} with these learning goals: {learning_goals}. If the programmer considered the learning goals when writing the provided code, say something motivating. If the programmer didn't consider the learning goals, gently remind the person of their learning goals.",
+#     )
+    
+#     # application of the template
+#     evaluation_prompt = evaluation_prompt.format(code_input=code_input, learning_goals=learning_goals)
+    
+#     # llm definition
+#     evaluation_llm = OpenAI(temperature=0.3)
+    
+#     evaluation = evaluation_llm(evaluation_prompt)
+    s
+#     return evaluation
+
 def evaluate_code(directory, code_input):
     # Get a list of all files in the directory
     files = os.listdir(directory)
@@ -145,19 +177,23 @@ def evaluate_code(directory, code_input):
     # Filter the list to only include files with the correct format
     files = [f for f in files if f.endswith("_learninggoals.txt") and len(f) == 32]
 
+    if not files:
+        # No file with the correct format was found, execute generate_feedback function
+        return generate_feedback()
+
     # Sort the list of files by date, with the most recent file first
     files.sort(reverse=True)
 
     # Get the most recent file
-    latest_file = files[:1]
+    latest_file = files[0]
 
-    with open(os.path.join(directory, latest_file[0]), "r") as f:
+    with open(os.path.join(directory, latest_file), "r") as f:
         learning_goals = f.read()
     
     # defining the promp template to get both the latest code input and learning_goals
     evaluation_prompt = PromptTemplate(
-        input_variables=["code_input", "learning_goals"],
-        template="Please compare this code: {code_input} with these learning goals: {learning_goals}. If the programmer considered the learning goals when writing the provided code, say something motivating. If the programmer didn't consider the learning goals, gently remind the person of their learning goals.",
+        input_variables=["teaching_style", "code_input", "learning_goals"],
+        template="You are {teaching_style}. Please compare this code: {code_input} with these learning goals: {learning_goals}. If the programmer considered the learning goals when writing the provided code, say something motivating. If the programmer didn't consider the learning goals, gently remind the person of their learning goals.",
     )
     
     # application of the template
@@ -169,6 +205,11 @@ def evaluate_code(directory, code_input):
     evaluation = evaluation_llm(evaluation_prompt)
     
     return evaluation
+    
+def generate_feedback():
+    # Function to generate feedback when no learning goals file is found
+    return "No learning goals file found. Please provide specific learning goals for this code."
+
 
 def get_feedback(code_input, directory):
     
@@ -199,6 +240,9 @@ def add_vertical_space(num_lines: int = 1):
 # streamlit page
 
 st.title('Educator')
+
+# default teacher style
+teaching_style = 'A professional programming teacher'
 
 if st.button('Choose your educator'):
     teaching_style = st.radio('Your educator', ['Severus Snape','Bob Ross', 'Aristoteles'])
