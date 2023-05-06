@@ -20,3 +20,9 @@ https://excalidraw.com/#json=d3-zpepgpjRU185r8tLvR,7TGAcN0FXfvzncIXMKdLeg
     * define a default option
     * add teacher to prompt template
     * let a tiny drawing of that teacher appear in the top right corner
+* for pick_short_feedbacks:
+    * if fewer than 3 available -> pick that number
+    * if more than 3 available -> pick latest 3
+* create a function that executes pick_shortfeedbacks and define goals in combination
+    * execute that if button is clicked
+* Return a string for evalution if no leaning goal is created "Create some learning goals"
