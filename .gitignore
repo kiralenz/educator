@@ -135,3 +135,8 @@ config.json
 *.swp
 *.json
 *.txt
+data/
+data_backup/
+
+OS specific types
+.DS_Store
