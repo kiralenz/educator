@@ -17,6 +17,7 @@ from langchain.schema import (
     SystemMessage
 )
 import streamlit as st
+from PIL import Image
 
 
 
@@ -198,70 +199,92 @@ def add_vertical_space(num_lines: int = 1):
         st.write("")
 
         
-        
-
 
 # streamlit page
-st.title('Educator')
+st.set_page_config(
+    page_title="The Educator",
+    layout="wide",
+)
 
+def main():
 
-# default teacher style
-teacher = 'Aristoteles'
-
-with st.expander("Choose your educator here"):
-    # overwrite if wanted:
-    teacher = st.radio(label='Who do you want to teach you?', options=[
-        'Aristoteles', 'Severus Snape', 'A professional programming teacher', 'Bob Ross'
-    ])
-
-# Accessing the style of the selected or default teacher via the dict
-style = teachers_dict[teacher]
-    
-# Code review
-# add code input as text here
-code_input = st.text_input("Your code")
-
-# saving the input to txt via the prepared function
-save_to_txt(name='codeinput', input_string=code_input, timestamp=timestamp)
-
-# execute only when a code is passed 
-if code_input != '':
-    # generate the feedback to the submitted code
-    feedback = create_feedback(teacher, style, code_input)
-    # saving the feedback to txt
-    save_to_txt(name='feedback', input_string=feedback, timestamp=timestamp)
-    # create shorter versions of the feedback for better further use
-    short_feedback = shorten_feedback(feedback)
-    # saving the short feedback to txt via the prepared function
-    save_to_txt(name='shortfeedback', input_string=short_feedback, timestamp=timestamp)
-    
-    st.header('Your feedback:')
-    st.write(feedback)
-    
-    # retrieving the current leaning goals for evaluation
-    latest_goal = get_latest_goal(directory=directory)
-    # evaluating the code against the current learning goals and 
-    # prints out a reminder if no learning goals have been defined yet
-    evaluation = evaluate_code(teacher, style, code_input, latest_goal)
-    st.subheader('Think of your learning goals:')
-    st.write(evaluation)
+    st.sidebar.image('background.png', use_column_width=True)
 
     
-add_vertical_space(2)
-  
-    
-# Set learning goals
-# This has to be done only if the user checks the button 
-if st.button('Define learning goals'):
-    # selecting the last three feedbacks in their short form
-    latest_files = pick_latest_shortfeedbacks(directory)
-    # combining the content of these files in one string
-    latest_short_feedbacks = append_shortfeedbacks(latest_files=latest_files)
-    # defining the new learning goals from the last feedbacks
-    new_learning_goal = define_goal(latest_short_feedbacks=latest_short_feedbacks)
-    assert len(new_learning_goal) != 0, 'The created learning goal was empty'
-    st.write('Your new goals are:' + new_learning_goal)
+    st.title('Educator')
 
-    
+    # default teacher style
+    teacher = 'Aristoteles'
 
+    # two columns to design the page split
+    col1, col2 = st.columns([3,1])
+
+    with col1:
+        st.write('')
+    with col2:
+        with st.expander("Choose your educator here"):
+            # overwrite if wanted:
+            teacher = st.radio(label='Who do you want to teach you?', options=[
+                'Aristoteles', 'Severus Snape', 'A professional programming teacher', 'Bob Ross'
+            ])
+
+        # Accessing the style of the selected or default teacher via the dict
+        style = teachers_dict[teacher]
+
+    # two columns to keep the page split
+    col3, col4 = st.columns([3,1])
+    with col3:
+        # Code review
+        # add code input as text here
+        code_input = st.text_area("Your code")
+
+        # saving the input to txt via the prepared function
+        save_to_txt(name='codeinput', input_string=code_input, timestamp=timestamp)
+
+        # execute only when a code is passed 
+        if code_input != '':
+            # generate the feedback to the submitted code
+            feedback = create_feedback(teacher, style, code_input)
+            # saving the feedback to txt
+            save_to_txt(name='feedback', input_string=feedback, timestamp=timestamp)
+            # create shorter versions of the feedback for better further use
+            short_feedback = shorten_feedback(feedback)
+            # saving the short feedback to txt via the prepared function
+            save_to_txt(name='shortfeedback', input_string=short_feedback, timestamp=timestamp)
+
+            st.header('Your feedback:')
+            st.write(feedback)
+
+            # retrieving the current leaning goals for evaluation
+            latest_goal = get_latest_goal(directory=directory)
+            # evaluating the code against the current learning goals and 
+            # prints out a reminder if no learning goals have been defined yet
+            evaluation = evaluate_code(teacher, style, code_input, latest_goal)
+            st.subheader('Think of your learning goals:')
+            st.write(evaluation)
+
+
+        add_vertical_space(2)
+
+
+        # Set learning goals
+        # This has to be done only if the user checks the button 
+        if st.button('Define learning goals'):
+            # selecting the last three feedbacks in their short form
+            latest_files = pick_latest_shortfeedbacks(directory)
+            # combining the content of these files in one string
+            latest_short_feedbacks = append_shortfeedbacks(latest_files=latest_files)
+            # defining the new learning goals from the last feedbacks
+            new_learning_goal = define_goal(latest_short_feedbacks=latest_short_feedbacks)
+            assert len(new_learning_goal) != 0, 'The created learning goal was empty'
+            st.write('Your new goals are:' + new_learning_goal)
+
+    with col4:
+        image_name = str('teacher_images/') + teacher + str('.png')
+        image = Image.open(image_name)
+        st.image(image)
+
+
+if __name__ == '__main__':
+    main()
 
