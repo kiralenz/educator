@@ -9,7 +9,6 @@ https://excalidraw.com/#json=dBpF8HL_Ppt0J_qoOkDcz,loiD95L5KSmxeeLpoSNwyA
 
 ## TODO
 WIP:
-
 Longlist:
 * organize the setup
     * dependencies

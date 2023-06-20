@@ -21,16 +21,14 @@ from PIL import Image
 
 
 
-
-
 # getting keys
 # TODO: remove unnecessary aspects
-with open('../config.json') as f:
+with open('config.json') as f:
     keys = json.load(f)
 PATH = keys['path']
 openai_api_key = keys['openai_api_key']
 os.environ["OPENAI_API_KEY"] = openai_api_key
-directory = '../data' # replace this when working with PATH
+directory = '/data' # replace this when working with PATH
 
 
 
@@ -53,9 +51,12 @@ teachers_dict = {
 # Functions
 
 def save_to_txt(name, input_string, timestamp):
+    # Define the directory path
+    directory = "Documents/educator/data/"
+    # Create the directory if it doesn't exist
+    os.makedirs(directory, exist_ok=True)
     # Define the file name with the timestamp
-    # TODO: add the PATH to the filename
-    filename = f"../data/{timestamp}_{name}.txt"
+    filename = f"{directory}{timestamp}_{name}.txt"
     # Write the string to the file
     with open(filename, "w") as file:
         file.write(input_string)
@@ -81,8 +82,6 @@ def create_feedback(teacher, style, code_input):
         }))
 
     return feedback
-
-# rework from here
 
 def shorten_feedback(feedback): 
     # defining the prompt template for a standardized input
