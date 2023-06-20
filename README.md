@@ -9,6 +9,8 @@ https://excalidraw.com/#json=dBpF8HL_Ppt0J_qoOkDcz,loiD95L5KSmxeeLpoSNwyA
 
 ## TODO
 WIP:
+* files immer von PATH bzw. DATA_PATH lesen lassen
+* alle Funktionen checken und adaptieren
 Longlist:
 * organize the setup
     * dependencies

@@ -50,13 +50,11 @@ teachers_dict = {
 
 # Functions
 
-def save_to_txt(name, input_string, timestamp):
-    # Define the directory path
-    directory = "Documents/educator/data/"
+def save_to_txt(name, input_string, timestamp, data_path):
     # Create the directory if it doesn't exist
-    os.makedirs(directory, exist_ok=True)
+    os.makedirs(data_path, exist_ok=True)
     # Define the file name with the timestamp
-    filename = f"{directory}{timestamp}_{name}.txt"
+    filename = f"{data_path}{timestamp}_{name}.txt"
     # Write the string to the file
     with open(filename, "w") as file:
         file.write(input_string)
@@ -188,8 +186,7 @@ def define_goal(latest_short_feedbacks):
     learning_goal_chain = LLMChain(llm=learning_goal_llm, prompt=learning_goal_prompt)
     # Run the chain only specifying the input variable.
     learning_goal = learning_goal_chain.run(latest_short_feedbacks)
-    # saving the input to txt via the prepared function
-    save_to_txt(name='learninggoals', input_string=learning_goal, timestamp=timestamp)
+    
     return learning_goal
 
 def add_vertical_space(num_lines: int = 1):
@@ -238,18 +235,18 @@ def main():
         code_input = st.text_area("Your code")
 
         # saving the input to txt via the prepared function
-        save_to_txt(name='codeinput', input_string=code_input, timestamp=timestamp)
+        save_to_txt(name='codeinput', input_string=code_input, timestamp=timestamp, data_path=DATA_PATH)
 
         # execute only when a code is passed 
         if code_input != '':
             # generate the feedback to the submitted code
             feedback = create_feedback(teacher, style, code_input)
             # saving the feedback to txt
-            save_to_txt(name='feedback', input_string=feedback, timestamp=timestamp)
+            save_to_txt(name='feedback', input_string=feedback, timestamp=timestamp, data_path=DATA_PATH)
             # create shorter versions of the feedback for better further use
             short_feedback = shorten_feedback(feedback)
             # saving the short feedback to txt via the prepared function
-            save_to_txt(name='shortfeedback', input_string=short_feedback, timestamp=timestamp)
+            save_to_txt(name='shortfeedback', input_string=short_feedback, timestamp=timestamp, data_path=DATA_PATH)
 
             st.header('Your feedback:')
             st.write(feedback)
@@ -275,6 +272,8 @@ def main():
             latest_short_feedbacks = append_shortfeedbacks(latest_files=latest_files)
             # defining the new learning goals from the last feedbacks
             new_learning_goal = define_goal(latest_short_feedbacks=latest_short_feedbacks)
+            # saving the input to txt via the prepared function
+            save_to_txt(name='learninggoals', input_string=new_learning_goal, timestamp=timestamp, data_path=DATA_PATH)
             assert len(new_learning_goal) != 0, 'The created learning goal was empty'
             st.write('Your new goals are:' + new_learning_goal)
 
