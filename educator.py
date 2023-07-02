@@ -26,9 +26,12 @@ from PIL import Image
 with open('config.json') as f:
     keys = json.load(f)
 PATH = keys['path']
+DATA_PATH = os.path.join(PATH, 'data/')
 openai_api_key = keys['openai_api_key']
+
 os.environ["OPENAI_API_KEY"] = openai_api_key
 directory = '/data' # replace this when working with PATH
+
 
 
 
@@ -97,9 +100,9 @@ def shorten_feedback(feedback):
     return short_feedback
 
 # retrieve learning goals from the saved files
-def get_latest_goal(directory):
+def get_latest_goal(data_path):
     # Get a list of all files in the directory
-    files = os.listdir(directory)
+    files = os.listdir(data_path)
     # Filter the list to only include files with the correct format
     files = [f for f in files if f.endswith("_learninggoals.txt") and len(f) == 32]
     if not files:
@@ -109,7 +112,7 @@ def get_latest_goal(directory):
         files.sort(reverse=True)
         latest_file = files[0]
         # Read the contents of the file into the latest_goal variable
-        with open(os.path.join(directory, latest_file), "r") as f:
+        with open(os.path.join(data_path, latest_file), "r") as f:
             latest_goal = f.read()
     return latest_goal
 
@@ -145,10 +148,10 @@ def evaluate_code(teacher, style, code_input, latest_goal):
         evaluation = "You haven't defined learning goals yet. If you want, you can define some by clicking the button below."
     return evaluation
 
-def pick_latest_shortfeedbacks(directory):
+def pick_latest_shortfeedbacks(data_path):
     # TODO: use PATH here for directory
     # Get a list of all files in the directory
-    files = os.listdir(directory)
+    files = os.listdir(data_path)
     # Filter the list to only include files with the correct format
     files = [f for f in files if f.endswith("_shortfeedback.txt") and len(f) == 32]
     # if there are fewer than three files take all of them, if there are more take latest 3
@@ -167,7 +170,7 @@ def append_shortfeedbacks(latest_files):
     # Read the contents of the two files into string variables
     file_contents = []
     for file in latest_files:
-        with open(os.path.join(directory, file), "r") as f:
+        with open(os.path.join(DATA_PATH, file), "r") as f:
             file_contents.append(f.read())
     # Combine the three file contents into a single string variable
     latest_short_feedbacks = "\n".join(file_contents)
@@ -252,7 +255,7 @@ def main():
             st.write(feedback)
 
             # retrieving the current leaning goals for evaluation
-            latest_goal = get_latest_goal(directory=directory)
+            latest_goal = get_latest_goal(data_path=DATA_PATH)
             # evaluating the code against the current learning goals and 
             # prints out a reminder if no learning goals have been defined yet
             evaluation = evaluate_code(teacher, style, code_input, latest_goal)
@@ -267,7 +270,7 @@ def main():
         # This has to be done only if the user checks the button 
         if st.button('Define learning goals'):
             # selecting the last three feedbacks in their short form
-            latest_files = pick_latest_shortfeedbacks(directory)
+            latest_files = pick_latest_shortfeedbacks(data_path=DATA_PATH)
             # combining the content of these files in one string
             latest_short_feedbacks = append_shortfeedbacks(latest_files=latest_files)
             # defining the new learning goals from the last feedbacks
